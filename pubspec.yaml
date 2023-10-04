@@ -39,6 +39,8 @@ dependencies:
   geolocator: ^10.1.0
   lottie: ^2.6.0
   google_fonts: ^6.1.0
+  fluttertoast: ^8.2.2
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +65,8 @@ flutter:
     - assets/images/cloudy.jpg
     - assets/images/atmosphere.jpg
     - assets/images/rain.jpg
+    - assets/images/bg.jpg
+    - assets/images/logo.png
     - assets/images/thundersttorm.jpg
     - assets/Animation/loading.json
     - assets/Animation/rain_anim.json
@@ -70,6 +74,7 @@ flutter:
     - assets/Animation/sun_anim.json
     - assets/Animation/cloud_anim.json
     - assets/Animation/thunder_anim.json
+    - .env
 
 #    - assets/fonts/
   # The following line ensures that the Material Icons font is

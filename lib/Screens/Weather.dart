@@ -1,17 +1,20 @@
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<Map<String, dynamic>> getWeather() async {
   Map<String, dynamic> data = {};
-  final apiKey = '76918b053ea345b79fb4d6b085825286';
+  await dotenv.load(fileName: ".env");
+  final api=dotenv.env['api'];
   data = await getLongAndLat();
   final latitude = data['lat'];
   final longitude = data['long'];
   final url =
-      'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey';
+      'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$api';
 
   final response = await http.get(Uri.parse(url));
+  print(response);
 
   if (response.statusCode == 200) {
     return json.decode(response.body);
@@ -22,7 +25,6 @@ Future<Map<String, dynamic>> getWeather() async {
 
 Future<Map<String, dynamic>> getLongAndLat() async {
   LocationPermission permission = await Geolocator.checkPermission();
-  print(permission);
   Map<String, dynamic> data = {};
 
   if (permission == LocationPermission.denied) {
